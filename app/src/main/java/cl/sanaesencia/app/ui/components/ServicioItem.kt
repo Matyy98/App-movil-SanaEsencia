@@ -15,7 +15,7 @@ fun ServicioItem(servicio: Servicio, modifier: Modifier = Modifier) {
         Text(text = servicio.nombre, style = MaterialTheme.typography.titleMedium)
         Text(text = servicio.descripcion, style = MaterialTheme.typography.bodyMedium)
         Text(
-            text = "Modalidad: ${servicio.modalidad}",
+            text = "Modalidad: ${servicio.modalidad.etiqueta}",
             style = MaterialTheme.typography.labelMedium
         )
     }
