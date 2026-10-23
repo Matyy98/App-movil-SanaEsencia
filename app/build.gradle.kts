@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -48,6 +49,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Guía 12: persistencia local
     implementation(libs.androidx.datastore.preferences)
+    // Íconos (Icons.Default.Menu, Home, Person...)
+    implementation(libs.androidx.compose.material.icons.core)
+    // Estado y tareas en segundo plano (guías 10, 11 y 12)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.kotlinx.coroutines.android)
+    // Room: base de datos local
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
