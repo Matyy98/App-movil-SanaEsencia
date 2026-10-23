@@ -2,10 +2,10 @@ package cl.sanaesencia.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Colores de Sanaesencia, sacados de su sitio web (centrosanaesencia.cl).
+val AzulMarca = Color(0xFF7697B9)
+val AzulOscuro = Color(0xFF5D7FA3)
+val Turquesa = Color(0xFF3BA9B8)
+val TurquesaClaro = Color(0xFF5EC7D6)
+val AzulMuyClaro = Color(0xFFECF2F8)
+val FondoClaro = Color(0xFFF7F9FB)
