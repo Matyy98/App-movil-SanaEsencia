@@ -23,7 +23,12 @@ import cl.sanaesencia.app.ui.theme.AppSanaesencia_Grupo8Theme
 // Diseño para pantallas medianas (tablet pequeña o celular en horizontal):
 // los servicios se reparten en dos columnas.
 @Composable
-fun HomeMediumScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) {
+fun HomeMediumScreen(
+    servicios: List<Servicio>,
+    onAgendar: () -> Unit,
+    onProfesionales: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     // La lista se reparte en dos columnas con filter (ids impares a la izquierda, pares a la derecha).
     val columnaIzquierda = servicios.filter { it.id % 2 == 1 }
     val columnaDerecha = servicios.filter { it.id % 2 == 0 }
@@ -65,10 +70,10 @@ fun HomeMediumScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) {
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { /* pendiente: navegación a agendar */ }) {
+                Button(onClick = onAgendar) {
                     Text("Agendar hora")
                 }
-                Button(onClick = { /* pendiente: navegación a profesionales */ }) {
+                Button(onClick = onProfesionales) {
                     Text("Profesionales")
                 }
             }
@@ -80,6 +85,10 @@ fun HomeMediumScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) {
 @Composable
 fun HomeMediumScreenPreview() {
     AppSanaesencia_Grupo8Theme {
-        HomeMediumScreen(servicios = ServicioRepository().obtenerServicios())
+        HomeMediumScreen(
+            servicios = ServicioRepository().obtenerServicios(),
+            onAgendar = {},
+            onProfesionales = {}
+        )
     }
 }

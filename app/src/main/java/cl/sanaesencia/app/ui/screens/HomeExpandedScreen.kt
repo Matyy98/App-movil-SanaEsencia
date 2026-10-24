@@ -23,7 +23,12 @@ import cl.sanaesencia.app.ui.theme.AppSanaesencia_Grupo8Theme
 // Diseño para pantallas grandes (tablet): panel de presentación a la izquierda
 // y la lista de servicios a la derecha.
 @Composable
-fun HomeExpandedScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) {
+fun HomeExpandedScreen(
+    servicios: List<Servicio>,
+    onAgendar: () -> Unit,
+    onProfesionales: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
         Row(
             modifier = Modifier
@@ -45,10 +50,10 @@ fun HomeExpandedScreen(servicios: List<Servicio>, modifier: Modifier = Modifier)
                     text = "Acompañamos tu bienestar integral",
                     style = MaterialTheme.typography.titleLarge
                 )
-                Button(onClick = { /* pendiente: navegación a agendar */ }) {
+                Button(onClick = onAgendar) {
                     Text("Agendar hora")
                 }
-                Button(onClick = { /* pendiente: navegación a profesionales */ }) {
+                Button(onClick = onProfesionales) {
                     Text("Profesionales")
                 }
             }
@@ -70,6 +75,10 @@ fun HomeExpandedScreen(servicios: List<Servicio>, modifier: Modifier = Modifier)
 @Composable
 fun HomeExpandedScreenPreview() {
     AppSanaesencia_Grupo8Theme {
-        HomeExpandedScreen(servicios = ServicioRepository().obtenerServicios())
+        HomeExpandedScreen(
+            servicios = ServicioRepository().obtenerServicios(),
+            onAgendar = {},
+            onProfesionales = {}
+        )
     }
 }

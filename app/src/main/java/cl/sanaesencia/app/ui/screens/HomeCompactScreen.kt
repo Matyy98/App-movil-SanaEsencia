@@ -22,7 +22,12 @@ import cl.sanaesencia.app.ui.theme.AppSanaesencia_Grupo8Theme
 
 // Diseño para pantallas pequeñas (celular en vertical): todo en una sola columna.
 @Composable
-fun HomeCompactScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) {
+fun HomeCompactScreen(
+    servicios: List<Servicio>,
+    onAgendar: () -> Unit,
+    onProfesionales: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
         Column(
             modifier = Modifier
@@ -49,10 +54,10 @@ fun HomeCompactScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) 
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Button(onClick = { /* pendiente: navegación a agendar */ }) {
+                Button(onClick = onAgendar) {
                     Text("Agendar hora")
                 }
-                Button(onClick = { /* pendiente: navegación a profesionales */ }) {
+                Button(onClick = onProfesionales) {
                     Text("Profesionales")
                 }
             }
@@ -64,6 +69,10 @@ fun HomeCompactScreen(servicios: List<Servicio>, modifier: Modifier = Modifier) 
 @Composable
 fun HomeCompactScreenPreview() {
     AppSanaesencia_Grupo8Theme {
-        HomeCompactScreen(servicios = ServicioRepository().obtenerServicios())
+        HomeCompactScreen(
+            servicios = ServicioRepository().obtenerServicios(),
+            onAgendar = {},
+            onProfesionales = {}
+        )
     }
 }
