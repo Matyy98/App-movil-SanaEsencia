@@ -85,9 +85,10 @@ class SesionViewModel(application: Application) : AndroidViewModel(application) 
 
     // Borra la sesión guardada y vuelve a dejar sin usuario
     fun cerrarSesion() {
+        // Primero se desconecta en la app (así el login ya no lo ve conectado)
+        _usuario.value = null
         viewModelScope.launch {
             repositorio.cerrarSesion()
-            _usuario.value = null
         }
     }
 }
