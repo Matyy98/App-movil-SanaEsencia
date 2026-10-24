@@ -53,31 +53,64 @@ object Validaciones {
     fun terminos(aceptados: Boolean): String? =
         if (!aceptados) "Debes aceptar el uso de datos ficticios" else null
 
-    // Agendamiento de citas
+    // ---------- Promociones (Administración) ----------
+
+    fun tituloPromocion(valor: String): String? = when {
+        valor.isBlank() -> "Ingresa un título"
+        valor.trim().length < 5 -> "El título debe tener al menos 5 caracteres"
+        else -> null
+    }
+
+    fun descripcionPromocion(valor: String): String? = when {
+        valor.isBlank() -> "Ingresa una descripción"
+        valor.trim().length < 10 -> "Describe la promoción con al menos 10 caracteres"
+        else -> null
+    }
+
+    // Descuento: número entero entre 5 y 50 (porcentaje)
+    fun descuento(valor: String): String? {
+        val numero = valor.trim().toIntOrNull()
+        return when {
+            valor.isBlank() -> "Ingresa el porcentaje de descuento"
+            numero == null -> "Escribe solo números, sin el signo %"
+            numero < 5 || numero > 50 -> "El descuento debe estar entre 5% y 50%"
+            else -> null
+        }
+    }
+
+    // Segmento: "Todos", "Inactivos" o "Nuevos"
+    fun segmento(valor: String): String? =
+        if (valor.isBlank()) "Elige a quién va dirigida la promoción" else null
+
+    // ---------- Agendamiento (Integrante 2) ----------
+
     fun servicioElegido(id: Int): String? =
-        if (id <= 0) "Elige un servicio" else null
+        if (id == 0) "Elige un servicio" else null
 
     fun profesionalElegido(id: Int): String? =
-        if (id <= 0) "Elige un profesional" else null
+        if (id == 0) "Elige un profesional" else null
 
     fun modalidadElegida(modalidad: Modalidad?): String? =
         if (modalidad == null) "Elige una modalidad" else null
 
-    fun fechaCita(fecha: String): String? = when {
-        fecha.isBlank() -> "Elige una fecha"
-        Fechas.parsear(fecha) == null -> "Fecha no válida"
-        else -> null
-    }
-
-    fun horaElegida(hora: String): String? =
-        if (hora.isBlank()) "Elige una hora" else null
-
-    fun motivoCita(motivo: String): String? {
-        val texto = motivo.trim()
+    // Fecha "dd/MM/yyyy": de lunes a sábado, desde hoy hasta 60 días adelante
+    fun fechaCita(valor: String): String? {
+        val dia = Fechas.parsear(valor)
         return when {
-            texto.isBlank() -> "Ingresa el motivo de atención"
-            texto.length !in 10..100 -> "El motivo debe tener entre 10 y 100 caracteres"
+            valor.isBlank() -> "Elige una fecha"
+            dia == null -> "La fecha debe tener el formato dd/MM/yyyy"
+            !Fechas.fechaValida(dia) -> "Atendemos de lunes a sábado, dentro de los próximos 60 días"
             else -> null
         }
+    }
+
+    fun horaElegida(valor: String): String? =
+        if (valor.isBlank()) "Elige un horario" else null
+
+    fun motivoCita(valor: String): String? = when {
+        valor.isBlank() -> "Cuéntanos el motivo de la consulta"
+        valor.trim().length < 10 -> "Describe el motivo con al menos 10 caracteres"
+        valor.trim().length > 100 -> "Usa un máximo de 100 caracteres"
+        else -> null
     }
 }

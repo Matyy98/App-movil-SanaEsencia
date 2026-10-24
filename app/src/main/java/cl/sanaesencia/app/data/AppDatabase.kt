@@ -7,10 +7,15 @@ import androidx.room.RoomDatabase
 
 // Base de datos local de la app (Room).
 // Cada integrante agrega su tabla en "entities" y su DAO abajo.
-@Database(entities = [UsuarioEntity::class, CitaEntity::class], version = 1)
+@Database(entities = [UsuarioEntity::class, PromocionEntity::class, CitaEntity::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
+
+    // Tabla de promociones (Administración)
+    abstract fun promocionDao(): PromocionDao
+
+    // Tabla de citas (Agendamiento)
     abstract fun citaDao(): CitaDao
 
     companion object {
