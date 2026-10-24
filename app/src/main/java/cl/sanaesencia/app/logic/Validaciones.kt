@@ -50,4 +50,33 @@ object Validaciones {
 
     fun terminos(aceptados: Boolean): String? =
         if (!aceptados) "Debes aceptar el uso de datos ficticios" else null
+
+    // ---------- Promociones (Administración) ----------
+
+    fun tituloPromocion(valor: String): String? = when {
+        valor.isBlank() -> "Ingresa un título"
+        valor.trim().length < 5 -> "El título debe tener al menos 5 caracteres"
+        else -> null
+    }
+
+    fun descripcionPromocion(valor: String): String? = when {
+        valor.isBlank() -> "Ingresa una descripción"
+        valor.trim().length < 10 -> "Describe la promoción con al menos 10 caracteres"
+        else -> null
+    }
+
+    // Descuento: número entero entre 5 y 50 (porcentaje)
+    fun descuento(valor: String): String? {
+        val numero = valor.trim().toIntOrNull()
+        return when {
+            valor.isBlank() -> "Ingresa el porcentaje de descuento"
+            numero == null -> "Escribe solo números, sin el signo %"
+            numero < 5 || numero > 50 -> "El descuento debe estar entre 5% y 50%"
+            else -> null
+        }
+    }
+
+    // Segmento: "Todos", "Inactivos" o "Nuevos"
+    fun segmento(valor: String): String? =
+        if (valor.isBlank()) "Elige a quién va dirigida la promoción" else null
 }
