@@ -69,14 +69,16 @@ También se puede crear una cuenta de paciente nueva desde "Regístrate".
 
 ## Estructura
 
+```
 app/src/main/java/cl/sanaesencia/app/
-data/         Room (entidades, DAOs y base de datos) y DataStore
-logic/        Validaciones y reglas de negocio (fechas, boxes, deserción)
-model/        Modelos de datos y estados de pantalla
-repository/   Acceso a los datos
-viewmodel/    ViewModels de cada parte de la app
-navigation/   Rutas, eventos de navegación y AppNavigation
-ui/           Tema, componentes compartidos y pantallas por perfil
+  data/         Room (entidades, DAOs y base de datos) y DataStore
+  logic/        Validaciones y reglas de negocio (fechas, boxes, deserción)
+  model/        Modelos de datos y estados de pantalla
+  repository/   Acceso a los datos
+  viewmodel/    ViewModels de cada parte de la app
+  navigation/   Rutas, eventos de navegación y AppNavigation
+  ui/           Tema, componentes compartidos y pantallas por perfil
+```
 
 ## Privacidad
 
