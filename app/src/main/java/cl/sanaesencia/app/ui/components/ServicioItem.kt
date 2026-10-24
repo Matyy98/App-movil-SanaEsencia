@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cl.sanaesencia.app.model.Servicio
 
-// Componente reutilizable: muestra un servicio. Lo usan las tres vistas de HomeScreen.
+// Componente reutilizable: muestra un servicio. Lo usan Inicio y Servicios.
 @Composable
 fun ServicioItem(servicio: Servicio, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
