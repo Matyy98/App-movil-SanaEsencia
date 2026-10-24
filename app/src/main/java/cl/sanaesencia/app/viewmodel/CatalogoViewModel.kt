@@ -64,4 +64,26 @@ class CatalogoViewModel : ViewModel() {
             )
         }
     }
+
+    // Pasa a la siguiente especialidad de la lista (después de la última vuelve a "Todas")
+    fun siguienteEspecialidad() {
+        val lista = _estado.value.especialidades
+        val actual = _estado.value.especialidadElegida
+        var posicion = 0
+        lista.forEachIndexed { indice, nombre ->
+            if (nombre == actual) posicion = indice
+        }
+        val siguiente = if (posicion + 1 < lista.size) lista[posicion + 1] else lista[0]
+        elegirEspecialidad(siguiente)
+    }
+
+    // Sin filtro -> Presencial -> Online -> sin filtro
+    fun siguienteModalidad() {
+        val siguiente = when (_estado.value.modalidadElegida) {
+            null -> Modalidad.PRESENCIAL
+            Modalidad.PRESENCIAL -> Modalidad.ONLINE
+            else -> null
+        }
+        elegirModalidad(siguiente)
+    }
 }

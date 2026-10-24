@@ -1,5 +1,7 @@
 package cl.sanaesencia.app.logic
 
+import cl.sanaesencia.app.model.Modalidad
+
 // Reglas de validación de todos los formularios (sin nada de pantalla).
 // Cada función devuelve null si el dato está bien, o el mensaje de error si está mal.
 object Validaciones {
@@ -79,4 +81,36 @@ object Validaciones {
     // Segmento: "Todos", "Inactivos" o "Nuevos"
     fun segmento(valor: String): String? =
         if (valor.isBlank()) "Elige a quién va dirigida la promoción" else null
+
+    // ---------- Agendamiento (Integrante 2) ----------
+
+    fun servicioElegido(id: Int): String? =
+        if (id == 0) "Elige un servicio" else null
+
+    fun profesionalElegido(id: Int): String? =
+        if (id == 0) "Elige un profesional" else null
+
+    fun modalidadElegida(modalidad: Modalidad?): String? =
+        if (modalidad == null) "Elige una modalidad" else null
+
+    // Fecha "dd/MM/yyyy": de lunes a sábado, desde hoy hasta 60 días adelante
+    fun fechaCita(valor: String): String? {
+        val dia = Fechas.parsear(valor)
+        return when {
+            valor.isBlank() -> "Elige una fecha"
+            dia == null -> "La fecha debe tener el formato dd/MM/yyyy"
+            !Fechas.fechaValida(dia) -> "Atendemos de lunes a sábado, dentro de los próximos 60 días"
+            else -> null
+        }
+    }
+
+    fun horaElegida(valor: String): String? =
+        if (valor.isBlank()) "Elige un horario" else null
+
+    fun motivoCita(valor: String): String? = when {
+        valor.isBlank() -> "Cuéntanos el motivo de la consulta"
+        valor.trim().length < 10 -> "Describe el motivo con al menos 10 caracteres"
+        valor.trim().length > 100 -> "Usa un máximo de 100 caracteres"
+        else -> null
+    }
 }
