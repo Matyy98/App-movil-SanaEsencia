@@ -16,7 +16,10 @@ object HistorialDemo {
     private fun cita(id: Int, correo: String, nombre: String, servicioId: Int, terapeutaId: Int,
                      hoy: LocalDate, diasAtras: Int, hora: String, box: Int, estado: EstadoCita): Cita {
         val modalidad = if (box == 0) Modalidad.ONLINE else Modalidad.PRESENCIAL
-        return Cita(id, correo, nombre, servicioId, terapeutaId, Fechas.formatear(hoy.minusDays(diasAtras.toLong())), hora, modalidad, box, estado)
+        val fecha = hoy.minusDays(diasAtras.toLong())
+        // El centro no atiende los domingos: si cae en domingo, la sesión fue el sábado
+        val fechaHabil = if (Fechas.esDiaHabil(fecha)) fecha else fecha.minusDays(1)
+        return Cita(id, correo, nombre, servicioId, terapeutaId, Fechas.formatear(fechaHabil), hora, modalidad, box, estado)
     }
 
     // Los id son negativos para que nunca choquen con los que pone Room
