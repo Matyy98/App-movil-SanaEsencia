@@ -30,6 +30,8 @@ import cl.sanaesencia.app.ui.screens.paciente.ProductosScreen
 import cl.sanaesencia.app.ui.screens.paciente.ProfesionalesScreen
 import cl.sanaesencia.app.ui.screens.paciente.ServiciosScreen
 import cl.sanaesencia.app.ui.screens.perfil.PerfilScreen
+import cl.sanaesencia.app.ui.screens.terapeuta.MisPacientesScreen
+import cl.sanaesencia.app.viewmodel.TerapeutaViewModel
 import cl.sanaesencia.app.viewmodel.AdminViewModel
 import cl.sanaesencia.app.viewmodel.AgendaViewModel
 import cl.sanaesencia.app.viewmodel.CatalogoViewModel
@@ -51,6 +53,7 @@ fun AppNavigation(anchoPantalla: WindowWidthSizeClass) {
     val agendaViewModel: AgendaViewModel = viewModel()
     val adminViewModel: AdminViewModel = viewModel()
     val perfilViewModel: PerfilViewModel = viewModel()
+    val terapeutaViewModel: TerapeutaViewModel = viewModel()
 
     // Usuario conectado (null = nadie) y si todavía se revisa la sesión guardada
     val usuario by sesionViewModel.usuario.collectAsState()
@@ -153,8 +156,8 @@ fun AppNavigation(anchoPantalla: WindowWidthSizeClass) {
 
             // Terapeuta
             composable(Screen.MisPacientes.route) {
-                PantallaInterna("Mis pacientes", Screen.MisPacientes, usuario, mainViewModel, cerrarSesion) { _, modifier ->
-                    PantallaPendiente("Mis pacientes", modifier)
+                PantallaInterna("Mis pacientes", Screen.MisPacientes, usuario, mainViewModel, cerrarSesion) { actual, modifier ->
+                    MisPacientesScreen(terapeutaViewModel, actual, modifier)
                 }
             }
 
