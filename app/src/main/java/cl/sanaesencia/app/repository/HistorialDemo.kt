@@ -54,7 +54,38 @@ object HistorialDemo {
             cita(-20, "isidora.vega@correo.cl", "Isidora Vega", 5, 5, hoy, 3, "16:00", 6, c)
         )
     }
+    // Horas ocupadas en cada box (Box 1 al Box 8) según el día de la semana.
+    // Algunos días quedan con buena ocupación y otros con baja demanda (bajo 40%).
+    private val ocupacionSemana = listOf(
+        listOf(8, 7, 6, 5, 6, 4, 3, 5), // lunes: 55%
+        listOf(6, 5, 5, 4, 3, 4, 2, 3), // martes: 40%
+        listOf(3, 2, 2, 1, 2, 1, 0, 1), // miércoles: 15%
+        listOf(7, 6, 6, 5, 5, 4, 4, 3), // jueves: 50%
+        listOf(5, 4, 4, 3, 3, 2, 2, 1), // viernes: 30%
+        listOf(2, 1, 1, 1, 0, 0, 1, 0)  // sábado: 7%
+    )
 
+    // Citas ficticias solo para el panel deatrás hasta dos semanas adelante)
+    fun citasDelPanel(hoy: LocalDate = LocalDate.now()): List<Cita> {
+        val lista = mutableListOf<Cita>()
+        var id = -1000
+        for (dias in -7..14) {
+            val fecha = hoy.plusDays(dias.toLong())
+            if (Fechas.esDiaHabil(fecha)) {
+                // dayOfWeek.value: 1 = lunes ... 6 = sábado
+                val delDia = ocupacionSemana[fecha.dayOfWeek.value - 1]
+                for (box in 1..8) {
+                    // Cada box se llena desde las 09:00 con la cantidad de horas de la tabla
+                    for (i in 0 until delDia[box - 1]) {
+                        lista.add(Cita(id, "ficticio@correo.cl", "Paciente ficticio", 1, 1, Fechas.formatear(fecha),
+                            Fechas.HORAS[i], Modalidad.PRESENCIAL, box, EstadoCita.AGENDADA))
+                        id--
+                    }
+                }
+            }
+        }
+        return lista
+    }
     // Junta las citas de Room con el historial ficticio (lo usan el terapeuta y Administración)
     fun juntarCon(citas: List<Cita>): List<Cita> {
         val todas = mutableListOf<Cita>()

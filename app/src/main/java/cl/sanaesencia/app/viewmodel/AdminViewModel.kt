@@ -81,7 +81,7 @@ class AdminViewModel(application: Application) : AndroidViewModel(application) {
 
     // Ocupación de cada box en el día (citas de Room + historial ficticio)
     fun ocupacion(citas: List<Cita>, dia: LocalDate): List<OcupacionBox> =
-        GestorBoxes.ocupacionPorBox(HistorialDemo.juntarCon(citas), Fechas.formatear(dia))
+        GestorBoxes.ocupacionPorBox(HistorialDemo.juntarCon(citas) + HistorialDemo.citasDelPanel(), Fechas.formatear(dia))
 
     fun promedio(ocupaciones: List<OcupacionBox>): Int = GestorBoxes.promedioOcupacion(ocupaciones)
 

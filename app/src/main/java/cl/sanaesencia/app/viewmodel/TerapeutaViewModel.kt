@@ -37,7 +37,6 @@ class TerapeutaViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     // Junta las citas de Room con el historial ficticio de sesiones pasadas
-    // Junta las citas de Room con el historial ficticio de sesiones pasadas
     private fun conHistorial(citas: List<Cita>): List<Cita> = HistorialDemo.juntarCon(citas)
 
     // Pacientes del profesional con su riesgo, los de más riesgo primero.
