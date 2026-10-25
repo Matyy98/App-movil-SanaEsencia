@@ -3,7 +3,6 @@ package cl.sanaesencia.app.navigation
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -211,13 +210,5 @@ fun PantallaInterna(
         ) { modifier ->
             contenido(usuario, modifier)
         }
-    }
-}
-
-// Pantalla provisoria hasta que el integrante a cargo suba la suya
-@Composable
-fun PantallaPendiente(nombre: String, modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("$nombre: en construcción")
     }
 }
