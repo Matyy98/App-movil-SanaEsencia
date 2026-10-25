@@ -51,4 +51,12 @@ object HistorialDemo {
             cita(-20, "isidora.vega@correo.cl", "Isidora Vega", 5, 5, hoy, 3, "16:00", 6, c)
         )
     }
+
+    // Junta las citas de Room con el historial ficticio (lo usan el terapeuta y Administración)
+    fun juntarCon(citas: List<Cita>): List<Cita> {
+        val todas = mutableListOf<Cita>()
+        citas.forEach { todas.add(it) }
+        citas().forEach { todas.add(it) }
+        return todas
+    }
 }

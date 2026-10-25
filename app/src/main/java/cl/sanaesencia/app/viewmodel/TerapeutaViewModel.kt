@@ -37,12 +37,8 @@ class TerapeutaViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     // Junta las citas de Room con el historial ficticio de sesiones pasadas
-    private fun conHistorial(citas: List<Cita>): List<Cita> {
-        val todas = mutableListOf<Cita>()
-        citas.forEach { todas.add(it) }
-        HistorialDemo.citas().forEach { todas.add(it) }
-        return todas
-    }
+    // Junta las citas de Room con el historial ficticio de sesiones pasadas
+    private fun conHistorial(citas: List<Cita>): List<Cita> = HistorialDemo.juntarCon(citas)
 
     // Pacientes del profesional con su riesgo, los de más riesgo primero.
     // Recibe las citas para que la pantalla se redibuje cuando cambian.
