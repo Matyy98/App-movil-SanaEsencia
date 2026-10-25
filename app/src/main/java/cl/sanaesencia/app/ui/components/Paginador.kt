@@ -26,11 +26,11 @@ fun Paginador(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // En la primera página "Anterior" queda desactivado
-            Button(onClick = onAnterior, enabled = pagina > 0) { Text("Anterior") }
+            Button(onClick = onAnterior, enabled = pagina > 0) { Text("Pag. anterior") }
             // pagina parte en 0, por eso se muestra pagina + 1
-            Text("Página ${pagina + 1} de $totalPaginas")
+            Text(" ${pagina + 1} de $totalPaginas")
             // En la última página "Siguiente" queda desactivado
-            Button(onClick = onSiguiente, enabled = pagina < totalPaginas - 1) { Text("Siguiente") }
+            Button(onClick = onSiguiente, enabled = pagina < totalPaginas - 1) { Text("Pag. siguiente") }
         }
     }
 }
