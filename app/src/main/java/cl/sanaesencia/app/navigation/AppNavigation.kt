@@ -23,6 +23,8 @@ import cl.sanaesencia.app.ui.components.PantallaBase
 import cl.sanaesencia.app.ui.screens.acceso.LoginScreen
 import cl.sanaesencia.app.ui.screens.acceso.RegistroScreen
 import cl.sanaesencia.app.ui.screens.admin.PromocionesScreen
+import cl.sanaesencia.app.ui.screens.admin.AlertasScreen
+import cl.sanaesencia.app.ui.screens.admin.PanelAdminScreen
 import cl.sanaesencia.app.ui.screens.paciente.AgendarScreen
 import cl.sanaesencia.app.ui.screens.paciente.InicioScreen
 import cl.sanaesencia.app.ui.screens.paciente.MisCitasScreen
@@ -164,12 +166,12 @@ fun AppNavigation(anchoPantalla: WindowWidthSizeClass) {
             // Administración
             composable(Screen.PanelAdmin.route) {
                 PantallaInterna("Panel", Screen.PanelAdmin, usuario, mainViewModel, cerrarSesion) { _, modifier ->
-                    PantallaPendiente("Panel", modifier)
+                    PanelAdminScreen(adminViewModel, mainViewModel, modifier)
                 }
             }
             composable(Screen.Alertas.route) {
                 PantallaInterna("Alertas", Screen.Alertas, usuario, mainViewModel, cerrarSesion) { _, modifier ->
-                    PantallaPendiente("Alertas", modifier)
+                    AlertasScreen(adminViewModel, modifier)
                 }
             }
             composable(Screen.Promociones.route) {
